@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Strength Visualizer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="background-glow glow-one"></div>
+    <div class="background-glow glow-two"></div>
+
+    <main class="container">
+
+        <header class="hero">
+            <div class="logo">
+                <div class="logo-icon">🔐</div>
+                <div>
+                    <h1>PassGuard</h1>
+                    <p>Password Strength Visualizer</p>
+                </div>
+            </div>
+
+            <div class="security-badge">
+                <span class="status-dot"></span>
+                Browser-Based Security Check
+            </div>
+        </header>
+
+        <section class="intro">
+            <h2>How strong is your password?</h2>
+            <p>
+                Analyze password strength, discover weaknesses, and generate
+                a stronger password instantly.
+            </p>
+        </section>
+
+        <section class="main-grid">
+
+            <!-- Password Analyzer -->
+            <div class="card analyzer-card">
+
+                <div class="card-header">
+                    <div>
+                        <span class="section-label">PASSWORD ANALYZER</span>
+                        <h3>Test Your Password</h3>
+                    </div>
+
+                    <span class="shield-icon">🛡️</span>
+                </div>
+
+                <div class="password-input-wrapper">
+
+                    <input
+                        type="password"
+                        id="passwordInput"
+                        placeholder="Enter your password..."
+                        autocomplete="off"
+                    >
+
+                    <button id="togglePassword" class="icon-btn" type="button">
+                        👁
+                    </button>
+
+                </div>
+
+                <div class="strength-section">
+
+                    <div class="strength-top">
+                        <span>Strength</span>
+                        <strong id="strengthLabel">Enter Password</strong>
+                    </div>
+
+                    <div class="strength-bar">
+                        <div id="strengthProgress"></div>
+                    </div>
+
+                    <div class="score-row">
+                        <span>Security Score</span>
+                        <strong id="scoreValue">0/100</strong>
+                    </div>
+
+                </div>
+
+                <div class="requirements">
+
+                    <div class="requirements-header">
+                        <h4>Password Requirements</h4>
+                        <span id="requirementCount">0/6</span>
+                    </div>
+
+                    <div class="requirement-list">
+
+                        <div class="requirement" id="reqLength">
+                            <span class="check">✓</span>
+                            <span>At least 8 characters</span>
+                        </div>
+
+                        <div class="requirement" id="reqLong">
+                            <span class="check">✓</span>
+                            <span>At least 12 characters</span>
+                        </div>
+
+                        <div class="requirement" id="reqUpper">
+                            <span class="check">✓</span>
+                            <span>Uppercase letter</span>
+                        </div>
+
+                        <div class="requirement" id="reqLower">
+                            <span class="check">✓</span>
+                            <span>Lowercase letter</span>
+                        </div>
+
+                        <div class="requirement" id="reqNumber">
+                            <span class="check">✓</span>
+                            <span>Number</span>
+                        </div>
+
+                        <div class="requirement" id="reqSpecial">
+                            <span class="check">✓</span>
+                            <span>Special character</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="warning-box" id="warningBox">
+                    <span>💡</span>
+                    <p id="warningText">
+                        Enter a password to begin the security analysis.
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- Generator -->
+            <div class="card generator-card">
+
+                <div class="card-header">
+                    <div>
+                        <span class="section-label">PASSWORD GENERATOR</span>
+                        <h3>Create a Strong Password</h3>
+                    </div>
+
+                    <span class="generator-icon">⚡</span>
+                </div>
+
+                <p class="card-description">
+                    Generate a random password using letters, numbers and
+                    special characters.
+                </p>
+
+                <div class="generated-password">
+
+                    <input
+                        type="text"
+                        id="generatedPassword"
+                        readonly
+                        placeholder="Your generated password"
+                    >
+
+                    <button id="copyPassword" class="icon-btn" type="button">
+                        📋
+                    </button>
+
+                </div>
+
+                <div class="generator-options">
+
+                    <div class="option-header">
+                        <label for="passwordLength">
+                            Password Length
+                        </label>
+
+                        <strong id="lengthValue">16</strong>
+                    </div>
+
+                    <input
+                        type="range"
+                        id="passwordLength"
+                        min="8"
+                        max="32"
+                        value="16"
+                    >
+
+                    <div class="range-labels">
+                        <span>8</span>
+                        <span>32</span>
+                    </div>
+
+                </div>
+
+                <div class="checkbox-grid">
+
+                    <label class="checkbox-item">
+                        <input type="checkbox" id="includeUpper" checked>
+                        <span>Uppercase</span>
+                    </label>
+
+                    <label class="checkbox-item">
+                        <input type="checkbox" id="includeLower" checked>
+                        <span>Lowercase</span>
+                    </label>
+
+                    <label class="checkbox-item">
+                        <input type="checkbox" id="includeNumbers" checked>
+                        <span>Numbers</span>
+                    </label>
+
+                    <label class="checkbox-item">
+                        <input type="checkbox" id="includeSymbols" checked>
+                        <span>Symbols</span>
+                    </label>
+
+                </div>
+
+                <button id="generatePassword" class="primary-btn">
+                    <span>⚡</span>
+                    Generate Strong Password
+                </button>
+
+                <div class="generator-note">
+                    <span>🔒</span>
+                    <p>
+                        Generated passwords are created directly in your
+                        browser and are not sent to a server.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- Security Insights -->
+        <section class="card insights-card">
+
+            <div class="card-header">
+                <div>
+                    <span class="section-label">SECURITY INSIGHTS</span>
+                    <h3>What Makes a Strong Password?</h3>
+                </div>
+            </div>
+
+            <div class="insight-grid">
+
+                <div class="insight">
+                    <div class="insight-icon">📏</div>
+                    <div>
+                        <h4>Long</h4>
+                        <p>
+                            Longer passwords are generally harder to guess.
+                            Aim for 12+ characters.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="insight">
+                    <div class="insight-icon">🔤</div>
+                    <div>
+                        <h4>Varied</h4>
+                        <p>
+                            Combine uppercase, lowercase, numbers and symbols.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="insight">
+                    <div class="insight-icon">🚫</div>
+                    <div>
+                        <h4>Unique</h4>
+                        <p>
+                            Avoid common passwords, names, dates and repeated
+                            patterns.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="insight">
+                    <div class="insight-icon">🔄</div>
+                    <div>
+                        <h4>Different</h4>
+                        <p>
+                            Don't reuse the same password across important
+                            accounts.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- History -->
+        <section class="card history-card">
+
+            <div class="card-header">
+                <div>
+                    <span class="section-label">LOCAL HISTORY</span>
+                    <h3>Recent Strength Checks</h3>
+                </div>
+
+                <button id="clearHistory" class="secondary-btn">
+                    Clear History
+                </button>
+            </div>
+
+            <div id="historyContainer" class="history-container">
+                <div class="empty-history">
+                    <span>📊</span>
+                    <p>No password checks yet.</p>
+                </div>
+            </div>
+
+        </section>
+
+        <footer>
+            <p>
+                PassGuard • Frontend Cybersecurity Project
+            </p>
+            <span>Passwords are analyzed locally in your browser.</span>
+        </footer>
+
+    </main>
+
+    <div id="toast" class="toast">
+        Password copied!
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
